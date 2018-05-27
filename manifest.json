@@ -1,0 +1,31 @@
+{
+    "name": "TabGroup",
+    "description" : "Groups Tabs",
+    "version": "1.0",
+    "permissions":["tabs","declarativeContent","storage"],
+    "background" : {
+        "persistent" : false,
+        "scripts" : ["background.js"]
+    },
+    "browser_action": {
+      "default_popup" : "ui.html",
+      "default_icon": "hello_extensions.png"
+    },
+    "manifest_version": 2,
+    "commands": {
+      "order": {
+        "suggested_key": {
+          "default": "Alt+A",
+          "mac": "MacCtrl+Shift+Y"
+        },
+        "description": "Order"
+      },
+      "select" : {
+          "suggested_key":{
+            "default": "Alt+S",
+            "mac": "MacCtrl+Shift+1"
+          },
+          "description" : "Select"
+      }
+    }
+  }
