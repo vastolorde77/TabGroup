@@ -1,4 +1,4 @@
-A simple chrome extension for organizing tabs through keyboard shortcuts.
+A simple chrome* extension for organizing tabs through keyboard shortcuts.
 
 # Shortcut setup
 
@@ -13,4 +13,4 @@ Functions currently supported :
 - Select tabs with the same domain name.
 
 
-
+* also works on Opera and some chromium-based browsers.
