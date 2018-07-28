@@ -1,4 +1,15 @@
+
 A simple chrome* extension for organizing tabs through keyboard shortcuts.
+
+# Installing
+
+- Go to chrome://extensions/.
+- Enable developer mode by clicking the "developer mode" toggle on the top left side of the page.
+- Click "Load unpacked".
+- Select the folder with the extension.
+- Click OK.
+
+
 
 # Shortcut setup
 
@@ -13,4 +24,4 @@ Functions currently supported :
 - Select tabs with the same domain name.
 
 
-*also works on Opera and some chromium-based browsers.
+*currently not in chrome extensions store
