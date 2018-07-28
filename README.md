@@ -13,4 +13,4 @@ Functions currently supported :
 - Select tabs with the same domain name.
 
 
-* also works on Opera and some chromium-based browsers.
+*also works on Opera and some chromium-based browsers.
