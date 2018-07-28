@@ -1,7 +1,7 @@
 
 A simple chrome* extension for organizing tabs through keyboard shortcuts.
 
-# Installing
+# Installation
 
 - Go to chrome://extensions/.
 - Enable developer mode by clicking the "developer mode" toggle on the top left side of the page.
