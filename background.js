@@ -1,7 +1,13 @@
 chrome.commands.onCommand.addListener(function(command) {
+  let q = {
+    windowTypes: ["normal"],
+    populate: true
+  };
   switch (command) {
     case "order":
-      sort_tabs(order);
+      chrome.windows.getAll(q, windows => {
+        windows.forEach(sort_window);
+      });
       break;
     case "select":
       select();
@@ -15,6 +21,16 @@ chrome.commands.onCommand.addListener(function(command) {
       break;
   }
 });
+
+sort_window = window => {
+  let dic = {};
+  let tabs = window.tabs;
+  tabs.forEach((tab) => {
+    dic[getDomain(tab.url)] = 1;
+  });
+  dic = sort_indexes(dic);
+  sort_tabs(dic, tabs);
+};
 
 select = () => {
   chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
@@ -57,7 +73,7 @@ remove_others = () => {
   });
 };
 
-order = tabs => {
+sort_indexes = tabs => {
   tabs = Object.keys(tabs).sort();
   temp = {};
   for (let i = 0; i < tabs.length; i++) {
@@ -66,31 +82,13 @@ order = tabs => {
   return temp;
 };
 
-sort_tabs = order => {
-  dic = {};
-  chrome.tabs.query({ currentWindow: true }, tabs => {
-    tabs.forEach(tab => {
-      // console.log(tab.url.substr(0,tab.url.indexOf("/",8)));
-      dic[getDomain(tab.url)] = 1;
-    });
-    dic = order(dic);
-    order(dic, tabs);
-  });
-};
-
-order = (dic, tabs) => {
-  console.log(dic);
-  for (i in dic) place(i, tabs);
-  window.close();
+sort_tabs = (index, tabs) => {
+  for (i in index) place(i, tabs);
 };
 
 place = (replaceURL, tabs) => {
-  // chrome.tabs.query({ currentWindow: true }, function (tabs) {
-  // console.log(replaceURL);
   tabs.forEach(element => {
-    // console.log(element.url.includes(replaceURL));
     cur_url = getDomain(element.url);
     if (cur_url.match(replaceURL)) chrome.tabs.move(element.id, { index: -1 });
   });
-  //   });
 };
