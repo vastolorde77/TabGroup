@@ -1,4 +1,6 @@
 
+![alt text](https://raw.githubusercontent.com/vastolorde77/TabGroup/master/icon.png)
+
 A simple chrome* extension for organizing tabs through keyboard shortcuts.
 
 # Installation
