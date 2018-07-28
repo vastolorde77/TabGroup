@@ -1,31 +1,36 @@
 {
-    "name": "TabGroup",
-    "description" : "Groups Tabs",
-    "version": "1.0",
-    "permissions":["tabs","declarativeContent","storage"],
-    "background" : {
-        "persistent" : false,
-        "scripts" : ["background.js"]
-    },
-    "browser_action": {
-      "default_popup" : "ui.html",
-      "default_icon": "hello_extensions.png"
-    },
-    "manifest_version": 2,
-    "commands": {
-      "order": {
-        "suggested_key": {
-          "default": "Alt+A",
-          "mac": "MacCtrl+Shift+Y"
-        },
-        "description": "Order"
+  "name": "TabGroup",
+  "description": "Groups Tabs",
+  "version": "1.0",
+  "permissions": ["tabs", "declarativeContent", "storage"],
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": "hello_extensions.png"
+  },
+  "manifest_version": 2,
+  "commands": {
+    "order": {
+      "suggested_key": {
+        "default": "Alt+A",
+        "mac": "MacCtrl+Shift+Y"
       },
-      "select" : {
-          "suggested_key":{
-            "default": "Alt+S",
-            "mac": "MacCtrl+Shift+1"
-          },
-          "description" : "Select"
-      }
+      "description": "Group and order tabs by domain"
+    },
+    "select": {
+      "suggested_key": {
+        "default": "Alt+S",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "Select all tabs from same domain"
+    },
+    "remove": {
+      "description": "Remove tabs not from current domain"
+    },
+    "remove_same" : {
+      "description": "Remove tabs from current domain"
     }
   }
+}
