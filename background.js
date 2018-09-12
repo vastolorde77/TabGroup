@@ -17,6 +17,9 @@ chrome.commands.onCommand.addListener(function(command) {
       break;
     case "remove_same":
       remove_same();
+      break;
+    case "group_same_to_new_window":
+      group_same_to_new_window();
     default:
       break;
   }
@@ -92,3 +95,32 @@ place = (replaceURL, tabs) => {
     if (cur_url.match(replaceURL)) chrome.tabs.move(element.id, { index: -1 });
   });
 };
+
+group_same_to_new_window = () => {
+  // chrome.windows.create((window) => {console.log(window)});
+  chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
+    let url = tabs[0].url;
+    // chrome.tabs.query({ currentWindow: true }, tabs => {
+    //   tabs = tabs.filter(tab => getDomain(tab.url) === getDomain(url));
+    //   tabs = tabs.map(tab => tab.id);
+    //   console.log(tabs);
+    //   chrome.windows.create((window) => {
+    //     console.log(window.tabs);
+    //     chrome.tabs.move(tabs,{windowId : window.id,index:-1});
+    //     chrome.tabs.remove(window.tabs[0].id); // REMOVE NEW TAB PAGE
+    //   });
+    // });
+    chrome.windows.create((root) => {
+      chrome.windows.getAll((window) =>{
+        chrome.tabs.query({windowId:window.id},tabs => {
+          tabs = tabs.filter(tab => getDomain(tab.url) === getDomain(url));
+          tabs = tabs.map(tab => tab.id);
+          // console.log(tabs);
+          chrome.tabs.move(tabs,{windowId : root.id,index:-1});
+          chrome.tabs.remove(root.tabs[0].id); // REMOVE NEW TAB PAGE
+        })
+      });
+    });
+    
+  });
+}

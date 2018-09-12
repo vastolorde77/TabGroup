@@ -17,20 +17,23 @@
         "default": "Alt+A",
         "mac": "MacCtrl+Shift+Y"
       },
-      "description": "Group and order tabs by domain"
+      "description": "Group and order tabs by domain."
     },
     "select": {
       "suggested_key": {
         "default": "Alt+S",
         "mac": "MacCtrl+Shift+1"
       },
-      "description": "Select all tabs from same domain"
+      "description": "Select all tabs from same domain."
     },
     "remove": {
-      "description": "Remove tabs not from current domain"
+      "description": "Remove tabs not from current domain."
     },
     "remove_same" : {
-      "description": "Remove tabs from current domain"
+      "description": "Remove tabs from current domain."
+    },
+    "group_same_to_new_window" :{
+      "description": "Group and put tab of current domain to a new window."
     }
   }
 }
