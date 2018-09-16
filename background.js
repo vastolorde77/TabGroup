@@ -50,8 +50,13 @@ select = () => {
 };
 
 getDomain = url => {
-  let splitted = url.split(".");
-  if (splitted.length > 2) return splitted[1];
+  let URI = new URL(url);
+  let splitted = URI.host.split(".");
+  
+  // Ignore WWW
+  if(splitted.length > 1 && splitted[0] == "www") splitted = splitted.splice(1);
+
+  if (splitted.length > 1) return splitted.join(".");
   else return splitted[0];
 };
 remove_same = () => {
@@ -98,8 +103,9 @@ place = (replaceURL, tabs) => {
 
 group_same_to_new_window = () => {
   // chrome.windows.create((window) => {console.log(window)});
-  chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-    let url = tabs[0].url;
+  chrome.tabs.query({ currentWindow: true, highlighted: true }, tabs => {
+    let url = tabs.map(tab => tab.url);
+    console.log(url);
     // chrome.tabs.query({ currentWindow: true }, tabs => {
     //   tabs = tabs.filter(tab => getDomain(tab.url) === getDomain(url));
     //   tabs = tabs.map(tab => tab.id);
@@ -113,7 +119,18 @@ group_same_to_new_window = () => {
     chrome.windows.create((root) => {
       chrome.windows.getAll((window) =>{
         chrome.tabs.query({windowId:window.id},tabs => {
-          tabs = tabs.filter(tab => getDomain(tab.url) === getDomain(url));
+          tabs = tabs.filter(tab => {
+            let cur = getDomain(tab.url);
+            let same = false;
+            url.forEach( link => {
+              if(cur === getDomain(link)){
+                same = true;
+              }
+              console.log(getDomain(link),cur,same);
+            });
+            return same;
+          });
+          console.log(tabs);
           tabs = tabs.map(tab => tab.id);
           // console.log(tabs);
           chrome.tabs.move(tabs,{windowId : root.id,index:-1});
