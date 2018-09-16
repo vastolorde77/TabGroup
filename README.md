@@ -1,7 +1,7 @@
 
 ![alt text](https://raw.githubusercontent.com/vastolorde77/TabGroup/master/icon.png)
 
-A simple chrome* extension for organizing tabs through keyboard shortcuts.
+A simple chrome extension for organizing tabs through keyboard shortcuts.
 
 # Installation
 
@@ -16,14 +16,14 @@ A simple chrome* extension for organizing tabs through keyboard shortcuts.
 # Shortcut setup
 
 1.  Go to chrome://extensions/shortcuts.
-2.  Customize keyboard shortcut as needed.
+2.  Customize the keyboard shortcut as needed.
 
 Functions currently supported :
 
-- Sort by domain (example : "www.gooogle.com", domain name = "google").
-- Close tabs domain names other than the current tab.
-- Close tabs with the same domain name as current tab including the current tab.
-- Select tabs with the same domain name.
+- Sort tabs by domain name.
+- Close tabs with the same domain.
+- Close tabs with the domain name different than the currently selected domain.
+- Select tabs with the same domain.
+- Select and extract tabs from the same domain to new window.
 
 
-*currently not in chrome extensions store
